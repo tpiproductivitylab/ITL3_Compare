@@ -1,14 +1,16 @@
 FROM python:3.9-slim
 
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
 COPY requirements.txt requirements.txt
-RUN pip install -U pip
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 COPY . /app
 WORKDIR /app
 
-RUN mkdir ~/.streamlit
-RUN mv config.toml ~/.streamlit/config.toml
+RUN mkdir ~/.streamlit && mv config.toml ~/.streamlit/config.toml
 
 ARG GOOGLE_ANALYTICS_ID
 RUN if [ -n "$GOOGLE_ANALYTICS_ID" ] ; then \
