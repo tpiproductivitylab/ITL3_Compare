@@ -93,7 +93,7 @@ def load_data():
     return pd.read_csv('src/itl3_compare_data.csv'), pd.read_csv('src/itl3_compare_uk_data.csv')
 
 async def main():
-    st.set_page_config(layout="wide", page_title="ITL3 Compare")
+    st.set_page_config(layout="wide", page_icon="favicon.ico", page_title="ITL3 Compare")
 
     def img_to_base64(path):
         with open(path, "rb") as f:
