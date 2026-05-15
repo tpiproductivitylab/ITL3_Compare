@@ -152,24 +152,25 @@ async def main():
     # Filter indicator
     indicators = driver.keys()
 
-    st.markdown("""
-    <style>
-    /* Target each column container */
-    div[data-testid="stVerticalBlock"] > div[data-testid="stHorizontalBlock"] > div {
-        border: 1px solid #e0e0e0;
-        border-radius: 12px;
-        padding: 18px;
-        margin: 2px;
-        background-color: #ffffff;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.12);
-    }
-    /* Change main background color */
-    .stApp {
-        background-color: #6b739c;
-        min-width: 1500px; /* app won't shrink smaller than this */
-    }
-    </style>
-    """, unsafe_allow_html=True)
+    st.components.v1.html("""
+    <script>
+        const style = document.createElement('style');
+        style.textContent = `
+            .stColumn {
+                border: 1px solid #e0e0e0 !important;
+                border-radius: 12px !important;
+                padding: 18px !important;
+                background-color: #ffffff !important;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.12) !important;
+            }
+            .stApp {
+                background-color: #6b739c !important;
+                min-width: 1500px !important;
+            }
+        `;
+        window.parent.document.head.appendChild(style);
+    </script>
+    """, height=0)
     cols = st.columns([1,2,1])
 
     selected_indicator = 'GVA per hour worked'
