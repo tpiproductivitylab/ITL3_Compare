@@ -236,7 +236,7 @@ async def main():
     
     carousel_items = ""
     # Convert Plotly bar charts to HTML
-    for i, indicator in enumerate(list(indicators)[1:]):
+    for i, indicator in enumerate([ind for ind in list(indicators)[1:] if ind != 'Low Skilled']):
         bar = visualisations.bar(all_data, indicator, [selected_itl3_1, selected_itl3_2], driver[indicator][0])
         bar = bar.to_html(full_html=False, include_plotlyjs='cdn')
         # Set the first item as active
